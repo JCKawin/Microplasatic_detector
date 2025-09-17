@@ -1,54 +1,61 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  background-color: #1a1a1a;
-  color: #ffffff;
-  font-family: 'Roboto', sans-serif;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  background-image: radial-gradient(circle at 1px 1px, #3c3c3c 1px, transparent 0);
+  background-size: 20px 20px;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+@layer components {
+  .card {
+    background-color: #1a1a1a;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease-in-out;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Orbitron', sans-serif;
-}
+  @media (min-width: 768px) {
+    .card {
+      padding: 2rem;
+    }
+  }
 
-.header {
-  background-color: #2a2a2a;
-  padding: 1rem;
-  text-align: center;
-}
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
 
-.camera-view {
-  border: 2px dashed #4a4a4a;
-  margin: 2rem 0;
-  min-height: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+  }
 
-.results {
-  background-color: #2a2a2a;
-  padding: 1.5rem;
-  border-radius: 8px;
-}
+  .btn-primary {
+    background-color: #0070f3;
+    color: white;
+    box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+  }
 
-.btn {
-  background-color: #007bff;
-  color: #ffffff;
-  padding: 0.8rem 1.5rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+  .btn-primary:hover {
+    background-color: #0061d1;
+    box-shadow: 0 6px 20px 0 rgba(0, 118, 255, 0.23);
+  }
 
-.btn:hover {
-  background-color: #0056b3;
+  .btn-secondary {
+    background-color: #333;
+    color: white;
+  }
+
+  .btn-secondary:hover {
+    background-color: #444;
+  }
 }

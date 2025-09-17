@@ -1,52 +1,59 @@
-# Project Blueprint: Microplastic Detector
+
+# Microplastic Detector Blueprint
 
 ## Overview
 
-A mobile-first web application that uses a device's camera to detect and analyze microplastics in water samples. The application will provide real-time analysis and display results in a user-friendly interface.
+This application is a tool for identifying microplastics in water samples. Users can capture an image of a water sample using their device's camera or by uploading a file. The image is then analyzed by a backend service that uses the Google Gemini API to detect and classify microplastics. The results, including bounding boxes and labels for each detected particle, are overlaid on the original image, providing a clear visual analysis.
 
-## Features & Design
+## Project Outline & Features
 
 ### Core Functionality
-- **Camera Access:** The application will request access to the user's camera to capture images of water samples.
-- **Image Analysis:** Captured images will be processed to identify microplastics. (Initially, this will be a placeholder feature).
-- **Results Display:** The analysis results will be displayed to the user, including a summary and a visual representation of the detected microplastics.
+- **Image Capture:** Users can capture images directly through their browser using `react-webcam`.
+- **Image Upload:** Users can upload existing image files from their device.
+- **AI-Powered Analysis:** The backend uses the Gemini 1.5 Flash model to analyze the image for microplastics.
+- **Result Visualization:** Detected microplastics are highlighted with bounding boxes and labels on the image.
+- **Retake/Try Again:** Users can easily start over with a new image.
+- **Firebase Integration:** The project is configured to use Firebase services.
 
-### Design
-- **Theme:** A modern, dark theme with blue and green accents to reflect the marine and environmental nature of the application.
-- **Typography:** A clean and readable font combination using Google Fonts.
-- **Layout:** A responsive, mobile-first layout that ensures a seamless experience on all devices.
+### Tech Stack
+- **Frontend:** Next.js, React, Tailwind CSS
+- **Backend:** Next.js API Routes (Node.js)
+- **AI:** Google Gemini API
+- **Camera:** `react-webcam`
+- **Cloud Services:** Firebase
+
+### Design & Style
+- **Theme:** Dark, modern, and clean.
+- **Layout:** Centered, responsive layout that adapts to different screen sizes.
 - **Components:**
-    - **Header:** A fixed header with the application title.
-    - **Camera View:** A component that displays the camera feed and a button to capture an image.
-    - **Results Section:** A section to display the analysis results.
+    - **Header:** Large, bold title with a descriptive subtitle.
+    - **Input Cards:** The initial view presents two main options (Camera and Upload) in a clear, card-based layout.
+    - **Buttons:** Styled with a consistent theme ("btn-primary" for main actions, "btn-secondary" for secondary actions).
+    - **Analysis View:** The captured image is displayed prominently, with analysis results overlaid. A loading spinner indicates when analysis is in progress.
 
-### AI Image Recognition with YOLOv5 PyTorch
-- **Backend Integration:** Implement a Flask backend to receive image data from the frontend.
-- **YOLOv5 Model:** Integrate a pre-trained YOLOv5 PyTorch model for microplastic detection.
-- **Inference and Results:** Run inference on the captured images and send the detection results back to the frontend.
+## Current Plan & Steps
 
-## Plan
+The following changes have been implemented to improve the application's functionality, accuracy, and user experience:
 
-1.  **Initial Setup:**
-    *   Create a `blueprint.md` file.
-    *   Update `src/app/page.tsx` with a basic structure.
-    *   Update `src/app/layout.tsx` to include Google Fonts and basic styling.
-2.  **Create Components:**
-    *   Create a `components` directory.
-    *   Create a `Header.tsx` component.
-    *   Create a `Camera.tsx` client component to handle camera access and image capture.
-    *   Create a `Results.tsx` component to display the analysis results.
-3.  **Styling:**
-    *   Update `src/app/globals.css` with a dark theme, custom fonts, and component-specific styles.
-4.  **Implement Functionality:**
-    *   Add camera access logic to the `Camera.tsx` component.
-    *   Add image capture functionality.
-    *   Implement a placeholder for the image analysis.
-    *   Display the captured image and analysis results.
-5.  **Implement AI Image Recognition:**
-    *   Update `blueprint.md`: Document the plan for integrating YOLOv5 PyTorch for AI image recognition in the backend and displaying results in the frontend.
-    *   Update `backend/requirements.txt`: Add necessary Python packages: `torch`, `torchvision`, `Pillow`, `flask`, `flask-cors`, and `ultralytics`.
-    *   Implement `backend/app.py`: Set up a Flask server, create an endpoint to receive image data, load the YOLOv5 model, run inference, and return results.
-    *   Install Python Packages: Install the packages listed in `requirements.txt`.
-    *   Modify `src/components/Camera.tsx`: Update the component to send captured image data to the backend.
-    *   Modify `src/components/Results.tsx`: Update the component to display image recognition results from the backend.
+1.  **Remove Placeholder Feature:**
+    - Deleted the non-functional `ConnectDevice.tsx` component.
+    - Updated the main page (`page.tsx`) to remove the "Connect Device" card.
+    - Adjusted the layout to a two-column grid for the remaining "Camera" and "Upload" options.
+
+2.  **Fix Camera Implementation:**
+    - Installed the `react-webcam` library to provide a reliable cross-browser camera component.
+    - Replaced the previous manual camera implementation in `CameraComponent.tsx` with the `<Webcam>` component.
+    - Added "Capture" and "Retake" functionality for a better user experience.
+
+3.  **Improve Analysis Accuracy:**
+    - Updated the backend API route (`/api/analyze-image/route.ts`).
+    - Implemented a more detailed and specific prompt for the Gemini API, instructing it to act as a microplastic detection expert and return a structured JSON response.
+    - Added robust error handling to gracefully manage invalid or unexpected responses from the API.
+
+4.  **Code Cleanup & Optimization:**
+    - Resolved all linting warnings.
+    - Fixed an unused variable warning in the backend API route.
+    - Replaced the standard `<img>` tag with the optimized `next/image` component in `CameraComponent.tsx` to improve image loading performance.
+
+5. **Firebase Integration:**
+    - Added the necessary configuration to enable Firebase in the project.

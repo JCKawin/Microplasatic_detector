@@ -1,6 +1,0 @@
-Flask
-Pillow
-flask-cors
-google-generativeai
-python-dotenv
-requests
