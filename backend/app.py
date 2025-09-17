@@ -1,10 +1,16 @@
-
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from PIL import Image
 import json
 import io
+from ultralytics import YOLO
 
 app = Flask(__name__)
+CORS(app) # Enable CORS for all routes
+
+# Load YOLOv5 model
+# It will download the model if not already present
+model = YOLO('yolov5s.pt')
 
 # --- Variable Explanations ---
 #
@@ -51,26 +57,30 @@ def process_data():
         return jsonify({'error': 'Invalid JSON format for sensor_data'}), 400
 
     # 4. --- Microplastic Detection Logic ---
-    #
-    #    This is where you will implement your custom image processing
-    #    and microplastic detection logic.
-    #
-    #    - You can use libraries like OpenCV, TensorFlow, or PyTorch here.
-    #    - You will analyze the `image` variable.
-    #    - You can use the `sensor_data` to adjust your analysis.
-    #
-    #    For now, we'll use a placeholder result.
-    #
-    detected_microplastics = {
-        'count': 5,
-        'types': ['Fragment', 'Fiber', 'Bead'],
-        'confidence': 0.85
-    }
+    try:
+        # Perform inference
+        results = model(image)
 
-    processed_results = {
-        'microplastics': detected_microplastics,
-        'sensor_data_received': sensor_data
-    }
+        # Process results
+        detected_microplastics = []
+        for r in results:
+            for box in r.boxes:
+                # Assuming '0' is the class for microplastics, adjust if your model has different classes
+                # You might need to map class IDs to actual microplastic types
+                if int(box.cls[0]) == 0: # Example: if class 0 is microplastic
+                    detected_microplastics.append({
+                        'box': box.xyxy[0].tolist(), # Bounding box coordinates
+                        'confidence': float(box.conf[0]),
+                        'class': int(box.cls[0])
+                    })
+
+        processed_results = {
+            'microplastics_detections': detected_microplastics,
+            'sensor_data_received': sensor_data
+        }
+
+    except Exception as e:
+        return jsonify({'error': f'YOLOv5 inference failed: {e}'}), 500
 
     # 5. --- Return the Results ---
     return jsonify(processed_results)

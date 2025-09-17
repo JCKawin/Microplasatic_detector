@@ -7,9 +7,11 @@ import Results from '../components/Results';
 
 const HomePage: React.FC = () => {
   const [capturedImage, setCapturedImage] = useState<string | null>(null);
+  const [detections, setDetections] = useState<any[]>([]);
 
-  const handleCapture = (image: string) => {
+  const handleCapture = (image: string, newDetections: any[]) => {
     setCapturedImage(image);
+    setDetections(newDetections);
   };
 
   return (
@@ -17,7 +19,7 @@ const HomePage: React.FC = () => {
       <Header />
       <main>
         <Camera onCapture={handleCapture} />
-        <Results capturedImage={capturedImage} />
+        <Results capturedImage={capturedImage} detections={detections} />
       </main>
     </div>
   );

@@ -1,4 +1,3 @@
-
 # Project Blueprint: Microplastic Detector
 
 ## Overview
@@ -21,6 +20,11 @@ A mobile-first web application that uses a device's camera to detect and analyze
     - **Camera View:** A component that displays the camera feed and a button to capture an image.
     - **Results Section:** A section to display the analysis results.
 
+### AI Image Recognition with YOLOv5 PyTorch
+- **Backend Integration:** Implement a Flask backend to receive image data from the frontend.
+- **YOLOv5 Model:** Integrate a pre-trained YOLOv5 PyTorch model for microplastic detection.
+- **Inference and Results:** Run inference on the captured images and send the detection results back to the frontend.
+
 ## Plan
 
 1.  **Initial Setup:**
@@ -39,3 +43,10 @@ A mobile-first web application that uses a device's camera to detect and analyze
     *   Add image capture functionality.
     *   Implement a placeholder for the image analysis.
     *   Display the captured image and analysis results.
+5.  **Implement AI Image Recognition:**
+    *   Update `blueprint.md`: Document the plan for integrating YOLOv5 PyTorch for AI image recognition in the backend and displaying results in the frontend.
+    *   Update `backend/requirements.txt`: Add necessary Python packages: `torch`, `torchvision`, `Pillow`, `flask`, `flask-cors`, and `ultralytics`.
+    *   Implement `backend/app.py`: Set up a Flask server, create an endpoint to receive image data, load the YOLOv5 model, run inference, and return results.
+    *   Install Python Packages: Install the packages listed in `requirements.txt`.
+    *   Modify `src/components/Camera.tsx`: Update the component to send captured image data to the backend.
+    *   Modify `src/components/Results.tsx`: Update the component to display image recognition results from the backend.
