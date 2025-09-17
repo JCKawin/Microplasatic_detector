@@ -3,14 +3,22 @@ from flask_cors import CORS
 from PIL import Image
 import json
 import io
-from ultralytics import YOLO
+import os
+import google.generativeai as genai
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
-CORS(app) # Enable CORS for all routes
+CORS(app)  # Enable CORS for all routes
 
-# Load YOLOv5 model
-# It will download the model if not already present
-model = YOLO('yolov5s.pt')
+# Configure Gemini API
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+genai.configure(api_key=GOOGLE_API_KEY)
+
+# Load Gemini Pro Vision model
+model = genai.GenerativeModel('gemini-pro-vision')
 
 # --- Variable Explanations ---
 #
@@ -56,26 +64,38 @@ def process_data():
     except json.JSONDecodeError:
         return jsonify({'error': 'Invalid JSON format for sensor_data'}), 400
 
-    # 4. --- Microplastic Detection Logic ---
+    # 4. --- Image Analysis with Gemini ---
     try:
-        # Perform inference
-        results = model(image)
+        # Convert PIL Image to bytes for Gemini
+        img_byte_arr = io.BytesIO()
+        image.save(img_byte_arr, format=image.format or 'JPEG')
+        img_byte_arr = img_byte_arr.getvalue()
+
+        # Create prompt for Gemini
+        prompt = """Analyze this image for potential microplastics. If you find any:
+        1. Describe their location in the image
+        2. Estimate their size
+        3. Describe their characteristics (shape, color, etc.)
+        4. Assess confidence level of detection
+        Format the response as JSON with the following structure:
+        {
+            "detections": [
+                {
+                    "location": "description of location",
+                    "size": "estimated size",
+                    "characteristics": "shape, color, etc",
+                    "confidence": confidence level from 0-1
+                }
+            ]
+        }"""
+
+        # Generate response from Gemini
+        response = model.generate_content([prompt, img_byte_arr])
+        analysis = json.loads(response.text)
 
         # Process results
-        detected_microplastics = []
-        for r in results:
-            for box in r.boxes:
-                # Assuming '0' is the class for microplastics, adjust if your model has different classes
-                # You might need to map class IDs to actual microplastic types
-                if int(box.cls[0]) == 0: # Example: if class 0 is microplastic
-                    detected_microplastics.append({
-                        'box': box.xyxy[0].tolist(), # Bounding box coordinates
-                        'confidence': float(box.conf[0]),
-                        'class': int(box.cls[0])
-                    })
-
         processed_results = {
-            'microplastics_detections': detected_microplastics,
+            'microplastics_detections': analysis.get('detections', []),
             'sensor_data_received': sensor_data
         }
 

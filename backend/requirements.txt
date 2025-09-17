@@ -1,6 +1,6 @@
 Flask
 Pillow
-torch
-torchvision
-ultralytics
 flask-cors
+google-generativeai
+python-dotenv
+requests
