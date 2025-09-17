@@ -1,0 +1,92 @@
+<mxfile host="65bd71144e">
+    <diagram id="PbDHVonwZLFHIHhiGixh" name="Page-1">
+        <mxGraphModel dx="775" dy="545" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="5" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="230" y="50" width="180" height="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="&lt;font style=&quot;font-size: 16px;&quot;&gt;Backend&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="247.5" y="70" width="152.5" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;font style=&quot;font-size: 15px;&quot;&gt;AI analysis&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="247.5" y="150" width="150" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Server Side" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=17;" parent="1" vertex="1">
+                    <mxGeometry x="210" y="20" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="175" y="365" width="190" height="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;Frontend&lt;/font&gt;&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="187.5" y="410" width="162.5" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="&lt;span style=&quot;font-size: 16px;&quot;&gt;Camera Image Data&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="187.5" y="480" width="165" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Client side" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=15;" parent="1" vertex="1">
+                    <mxGeometry x="156.5" y="337" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.75;exitY=0;exitDx=0;exitDy=0;" parent="1" source="9" target="5" edge="1">
+                    <mxGeometry width="100" height="100" relative="1" as="geometry">
+                        <mxPoint x="262.5" y="420" as="sourcePoint"/>
+                        <mxPoint x="362.5" y="320" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="23" value="HTTPS&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" parent="13" vertex="1" connectable="0">
+                    <mxGeometry x="0.0769" y="2" relative="1" as="geometry">
+                        <mxPoint x="2" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="14" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Frontend&lt;/h1&gt;&lt;div&gt;next.js , runs in any brower&lt;/div&gt;&lt;div&gt;connects to the rasberry pi 4 device and collects the raw data from the sensors the send that to the backend (server)&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="382.5" y="385" width="220" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="670" width="200" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="Camera" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="680" width="90" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="LED Driver 6 different lights" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="740" width="90" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="Laser" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="800" width="90" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="Raman spectroscopy&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="230" y="740" width="80" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="" style="shape=flexArrow;endArrow=classic;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="15" target="9" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="252.5" y="620" as="sourcePoint"/>
+                        <mxPoint x="302.5" y="570" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="21" value="Usb C interface" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" parent="20" vertex="1" connectable="0">
+                    <mxGeometry x="-0.1237" y="3" relative="1" as="geometry">
+                        <mxPoint x="4" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="24" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Backend&lt;/h1&gt;&lt;div&gt;Using Flask in python this will collect the data from the frontend (client) and process it for futher AI processing&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="432.5" y="50" width="270" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;AI Analysis&lt;/h1&gt;&lt;div&gt;Pytorch , currently done in python usinng the YOLOv5 model for high accuracy in pattern detection&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="432.5" y="160" width="230" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="" style="edgeStyle=none;html=1;" parent="1" source="26" target="15" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="Raspberry Pi 4 device" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="640" width="122.5" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Raspberry pi 4 device&lt;/h1&gt;&lt;div&gt;this is used to collect sensitive and accurate data from the sample for the processing this contains several sensors which are not found in mobile phones , also it contains 6 array of light of different types of wavelenght for the prefect detection&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="330" y="670" width="300" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="Backend" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="186.25" y="380" width="163.75" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
