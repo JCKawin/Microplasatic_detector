@@ -11,7 +11,7 @@ CORS(app)
 
 # Load YOLOv5 model
 try:
-    model = YOLO('yolov5s.pt')
+    model = YOLO('yolov5su.pt')
     print("Model loaded successfully!")
 except Exception as e:
     print(f"Error loading model: {e}")
