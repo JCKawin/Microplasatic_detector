@@ -1,10 +1,17 @@
-
-import { GoogleGenerativeAI, Schema } from '@google/generative-ai';
+import { GoogleGenerativeAI, Schema, SchemaType } from '@google/generative-ai';
 import { NextRequest, NextResponse } from 'next/server';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || ' ');
 
+// Validate API key
+if (!process.env.GEMINI_API_KEY) {
+  console.error('GEMINI_API_KEY is missing. Please set it in the environment variables.');
+}
+
 async function base64ToGenerativePart(base64: string, mimeType: string) {
+  if (!base64.startsWith('data:image/')) {
+    throw new Error('Invalid base64 image format. Expected data:image/...');
+  }
   return {
     inlineData: {
       data: base64.split(',')[1],
@@ -19,21 +26,21 @@ export async function POST(req: NextRequest) {
 
     // Define the JSON schema for the expected response, including the summary
     const schema: Schema = {
-      type: "OBJECT",
+      type: SchemaType.OBJECT,
       properties: {
         microplastics: {
-          type: "ARRAY",
+          type: SchemaType.ARRAY,
           items: {
-            type: "OBJECT",
+            type: SchemaType.OBJECT,
             properties: {
               label: {
-                type: "STRING",
+                type: SchemaType.STRING,
                 description: "The type of microplastic (e.g., 'Fragment', 'Fiber', 'Pellet')."
               },
               box_2d: {
-                type: "ARRAY",
+                type: SchemaType.ARRAY,
                 items: {
-                  type: "NUMBER"
+                  type: SchemaType.NUMBER
                 },
                 description: "Normalized bounding box coordinates [xmin, ymin, xmax, ymax]."
               }
@@ -42,18 +49,18 @@ export async function POST(req: NextRequest) {
           }
         },
         summary: {
-          type: "OBJECT",
+          type: SchemaType.OBJECT,
           properties: {
             fragment_count: {
-              type: "NUMBER",
+              type: SchemaType.NUMBER,
               description: "Total number of 'Fragment' type microplastics detected."
             },
             fiber_count: {
-              type: "NUMBER",
+              type: SchemaType.NUMBER,
               description: "Total number of 'Fiber' type microplastics detected."
             },
             pellet_count: {
-              type: "NUMBER",
+              type: SchemaType.NUMBER,
               description: "Total number of 'Pellet' type microplastics detected."
             }
           },

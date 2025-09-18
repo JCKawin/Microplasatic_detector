@@ -1,14 +1,20 @@
-Flask==2.0.1Flask
+Flask==2.0.1
 
-Pillow==9.5.0Pillow
+Pillow==9.5.0
 
-torch>=1.7.0flask-cors
+torch>=1.7.0
 
-torchvision>=0.8.1google-generativeai
+torch>=1.7.0
+flask-cors
 
-numpy>=1.18.5python-dotenv
+torchvision>=0.8.1
+google-generativeai
 
-opencv-python>=4.1.2requests
+numpy>=1.18.5
+python-dotenv
+
+opencv-python>=4.1.2
+requests
 
 PyYAML>=5.3.1
 requests>=2.23.0
