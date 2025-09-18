@@ -20,6 +20,9 @@ except Exception as e:
 def health_check():
     return jsonify({"status": "healthy", "message": "Server is running"}), 200
 
+print(torch.cuda.is_available())
+print(json.__name__)
+
 @app.route('/detect', methods=['POST'])
 def detect_microplastics():
     if 'image' not in request.files:
