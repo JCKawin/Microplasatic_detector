@@ -17,7 +17,7 @@ const PelletIcon = () => (
 );
 const SuccessIcon = () => (
     <svg className="w-16 h-16 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-)
+);
 
 
 // --- Interfaces ---
@@ -175,16 +175,7 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {analysisResult.analysis.microplastics.length > 0 ? (
-                    <ul className="space-y-3">
-                      {analysisResult.analysis.microplastics.map((plastic, index) => (
-                        <li key={index} className="bg-gray-800/50 p-3 rounded-lg flex items-center shadow">
-                          {getIconForLabel(plastic.label)}
-                          <span className="font-medium">{plastic.label} Detected</span>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
+                  {analysisResult.analysis.microplastics.length === 0 && (
                     <div className="text-center py-6">
                         <SuccessIcon />
                         <h3 className="text-xl font-semibold mt-4 text-green-400">Clean Sample!</h3>
