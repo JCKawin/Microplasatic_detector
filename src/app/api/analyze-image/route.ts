@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ 
         imageUrl: "", 
         analysis,
-        error: 'Error analyzing image. Please ensure your Gemini API key is configured correctly and the model is available.' 
+        error: 'Error analyzing image.  Internal Server Error' 
     }, { status: 500 });
   }
 }
